@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 기초</title>
+</head>
+<body>
+    <div><input type="text" class="number" value="1"></div>
+    <div><input type="text" class="number" value="2"></div>
+    <div><input type="text" class="number" value="3"></div>
+    <div>
+        <button onclick="change()">변경(JS)</button> <!-- 버튼 눌렀을 때 change함수 사용 -->
+        <button onclick="$('.number').css('borderColor', 'red')">변경(JQ)</button> <!-- jQuery문법 -->
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    function change(){
+        const inputs = document.querySelectorAll("input.number")
+        console.log(inputs)
+        inputs.forEach((input)=>{
+            input.style.borderColor = "red";
+        });
+    };
+</script>
+</html>

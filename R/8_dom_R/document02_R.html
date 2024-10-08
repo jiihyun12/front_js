@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>name 을 이용한 선택자</title>
+</head>
+<body>
+    <div>
+        <form action="">
+            <!-- <div><input type="text" name="id" placeholder="아이디" value="hjh1234"></div>
+            <div><input type="text" name="password" placeholder="비밀번호" value="1234"></div> -->
+            <div>
+                <label><input type="checkbox" name="language" value="C언어" checked>C언어</label>
+            </div>
+            <div>
+                <label><input type="checkbox" name="language" value="python">파이썬</label>
+            </div>
+            <div>
+                <label><input type="checkbox" name="language" value="JAVA">자바</label>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+
+    // 체크 박스의 체크란에 하나만 체크가 되어 있는데, 자바스크립트로 모두 체크가 되어 있도록 변경하기
+    // name을 모두 다 가져온다. 
+    // 체크박스를 눌러서 properties를 확인해 보면
+   // checked가 true로 되어있는것을 볼 수 있다.
+
+ const checkboxes = document.getElementsByName("language")
+ checkboxes.forEach((check)=>{
+    check.checked = true
+ })
+
+    // checkbox를 name선택자로 가져와서 안에 있는 value를 모두 콘솔에 출력하기
+    
+   const values = document.getElementsByName("language")
+   values.forEach((data)=>{
+    console.log(data.value)
+   })
+
+
+</script>
+</html>

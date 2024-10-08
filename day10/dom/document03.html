@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 선택자를 이용한 선택</title>
+</head>
+<body>
+    <div>
+        <h1 id="title">CSS 선택자를 이용한 선택</h1>
+        <p class="sub-title">첫 번째 단락이에요!</p>
+        <ul>
+            <li class="odd">치킨</li>
+            <li class="even">피자</li>
+            <li class="odd">맨밥</li>
+            <li class="even">순대</li>
+            <li class="odd">라면</li>
+        </ul>
+    </div>
+</body>
+<script>
+    NodeList.prototype.filter = Array.prototype.filter;
+
+    // const title = document.querySelector("#title") // CSS에서 아이디를 불러오기 위한 #선택자를 사용하여 title을 불러온다.
+    // console.log(title);                            // CSS선택자는 CSS에서 요소들을 불러올 수 있는 문법을 사용할 수 있는 메서드이다.
+                                                  // querySelector는 단일, querySelectorAll은 여러 개를 가져올 수 있다.
+    const list = document.querySelectorAll("li")  // 쿼리셀렉터는 CSS선택자로도 가져올 수 있고, 태그만도 선택하여 들고올 수 있다.
+
+    // console.log(list);                         // li태그를 확인해보면 맨밥을 클릭했을 때 
+                                                 // innerHTML과 innerText에 들어가있는것을 확인할 수 있다.
+                                                // innerHTML은 태그로 넣으면 태그로 인식이 되는 것이고
+                                               // innerText는 통째로를 텍스트로 보고 있는 것이다.
+
+   list.forEach((li)=>{                        // li에서 반복문을 돌려서 
+    if(li.innerText==="맨밥"){                 // li태그에서 li의 innetText가 "맨밥"과 같은것을 찾아서
+      console.log(li)                         // 콘솔에 li를 출력한다.
+    }
+   });                                           
+
+
+
+    // filter()
+    // li태그에 "치킨"이 포함되어 있다면 글자색을 빨간색으로 변경
+    // list.filter((li)=>li.innerText.includes("치킨")) // innerText에서 문자열값을 비교할 땐 includes라는 메서드로 확인을 해봐야 한다.
+                                                   // includes 메서드의 리턴타입은 boolean이다.
+                                                  // 문자열값 안에서 값을 찾을건데, 
+                                                 // 같은 값이 포함되어있으면 true, 아니면 false
+                                                // true인 것만 새롭게 배열로 만든다.                                               
+    // list.filter((li)=>li.innerText.includes("치킨")) === ["치킨"]이라고 생각하면 된다.
+   list.filter((li)=>li.innerText.includes("치킨")).forEach((li)=>{ // forEach에서 filter로 걸러낸 li를 받아서 
+        li.style.color = "red"                                     // li의 style에서 color를 red로 바꾼다.
+    }); 
+    // 콘솔에서 확인을 해보면 className = "odd", classList: 값으로 들어가있다.
+    // classList는 배열로 가져올 수 있다.
+
+
+    const styles = {
+        odd : "22px",
+        even : "14px"
+    }
+
+    // 홀수(odd)의 글자 크기는 22px로
+    // 짝수(even)의 글자 크기는 14px로 변경하기    
+
+    list.forEach((li)=>{ // list에서 forEach로 반복을 돌려서 
+    // console.log(li.classList) // list를 받아서 li의 classList를 보니 0번째 인덱스에 위치해있다.
+    // console.log(classList[0])   // classList의 0번째 방에서 가져온다.
+
+    // 이제 색을 바꾸려면 우선 style들을 정의한다.
+    // [li.classList[0]==["odd"]이기 떄문에
+    // odd라는 key값으로 value를 찾아올 수 있다.
+    li.style.fontSize = styles[li.classList[0]];
+
+    // 또는
+    // 삼항연산자를 사용하여 해결할 수도 있다.
+    // li.style.fontSize = li.classList[0].includes("odd") ? "22px" : "14px";
+    })
+    
+</script>
+</html>

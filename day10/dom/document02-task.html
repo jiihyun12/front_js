@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>클래스를 이용한 선택 실습</title>
+</head>
+<body>
+  <ul>
+    <li class="list">첫 번째 리스트</li>
+    <li class="list">두 번째 리스트</li>
+    <li class="list">세 번째 리스트</li>
+    <li class="list">네 번째 리스트</li>
+    <li class="list">다섯 번째 리스트</li>
+  </ul>
+</body>
+<script>
+  // 자바스크립트로 list의 클래스 이름으로 선택하여
+  // .list인 태그의 폰트 크기를 20px로 변경하고,
+  // ul태그의 style 중 display를 flex로 변경한다
+  // 단, 선택자는 list만 불러온다.
+
+  HTMLCollection.prototype.forEach = Array.prototype.forEach; // forEach는 Array의 메서드이기때문에 
+                                                              // htmlCollection에서도 공통으로 사용할 수 있도록 프로토타입으로 선언해준다.
+
+  const list = document.getElementsByClassName("list"); // class이름이 list인 것을 가져온다.
+//   console.log(list); // 콘솔에서 확인을 해본다.
+                    // HTMLCollection에서 li태그 5개를 들고온 것을 확인할 수 있다.
+
+  list.forEach((li) => { // font크기를 변경하기위해 list에서 반복문을 돌린다.
+                         // li태그 중에서 프로퍼티를 확인한다.
+                         // fontSize가 style에 있는것을 확인한 후 
+                         // li의 syle에서 fontSize를 20px로 변경해준다.
+    li.style.fontSize = "20px";
+  });
+
+  const ul = list[0].parentElement; // ul태그는 
+                                    // parentElement: ul
+                                    // parentNode: ul
+                                    // 이렇게 들어가있는것을 확인할 수 있다.
+                                    // list에서 접근하라고 했으니
+                                    // list의 0번째 방에 li태그가 들어가있으니 여기서 둘 중 아무거나로 가져온다.
+//  console.log(list)   // 콘솔로 확인해보니 ul태그가 들어와있다.
+  ul.style.display = "flex"; // ul태그에 style에서 display를 flex를 넣어준다.
+  // flex는 자식요소를 좌에서 우로 배치하는 속성이므로 가로로 다 붙어있는 결과를 확인해볼 수 있다.
+
+</script>
+</html>

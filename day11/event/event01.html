@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클릭 이벤트</title>
+</head>
+<body>
+    
+    <h3>CSS 스타일을 동적으로 변경</h3>
+    <hr />      <!-- <hr> == 라인을 하나 그어주는 태그 -->
+    <p>변경할 요소</p>
+    <button type="button">스타일 변경</button>
+</body>
+<script>
+    // 우선 돔을 들고 온다.
+    // input의 버튼을 눌렀을 때 p태그요소가 변경돼야하니까 
+    // input과 p태그 둘 다 들고오기
+    const button = document.querySelector("button"); // 이벤트를 듣고 있는 대상
+    const p = document.querySelector("p"); // 변경할 대상
+    
+    button.addEventListener("click", () =>{ // button을 클릭했을 때 이벤트를 발생시킨다.
+        p.style.fontSize = "30px";         // click을 하면 event요소인 button이 click요소에대한 event를 듣고있다.
+        p.style.border = "3px solid orange"; // click이 발생하면 함수 뒤의 로직을 실행한다. (스타일 요소들)
+        p.style.width = "100px";
+        p.style.backgroundcolor = "pink";
+
+        // with문법
+        // 여러개의 스타일을 한 번에 묶어서 줄 때 사용
+        // with(p.style){
+        //     fontSize = "30px";
+        //     border = "3px solid orange";
+        //     width = "100px";
+        //     backgroundColor = "pink";
+        // }
+    })
+    
+</script>
+</html>

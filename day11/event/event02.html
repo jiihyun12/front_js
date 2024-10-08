@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클릭 이벤트2</title>
+</head>
+<body>
+    <form>
+        <label><input type="text" name="id" placeholder = "아이디를 입력하세요"></label>
+        <p id="id-result"></p>
+        <label><input type="text" name = "password" placeholder="비밀번호를 입력하세요"></label>
+        <p id="password-result"></p>
+        <button type="button">완료</button> <!-- form 태그 안에서의 button은 전송을 해야되기때문에 
+                                                 데이터를 들고 전송을 하는 submit이 기본 type이다.
+                                                유효성 검증이 끝난 다음에 보낼 것이기 때문에 type을 button으로 바꿔준다.
+                                                -->
+    </form>
+</body>
+<script>
+    // id가 있는지 없는지, pw가 있는지 없는지 검사를 위해 id와 password가 필요하고,
+    // 메세지를 출력해야하니까 id-result, pw-result도 필요하다.
+    // 또, button을 클릭해서 이벤트를 발생시켜야 하기 때문에 button도 필요하다.
+    const id = document.querySelector("input[name='id']")
+    const password = document.querySelector("input[name='password']")
+    const idresult = document.querySelector("#id-result")
+    const pwresult = document.querySelector("#password-result")
+    const button = document.querySelector("button")
+    // console.log(id, password, idresult, pwresult, button) // 잘 들고 왔는지 콘솔에서 확인
+
+
+    // 아이디와 비밀번호 유효성 검사하기
+    // 빈 값 검사
+
+    // 알고리즘
+    // 버튼을 누르면 이벤트리스너를 사용해서 클릭에 반응하게 한다.
+    // 유효성 검사를 한다.
+    
+    button.addEventListener("click", ()=>{ // 버튼을 클릭하면 이벤트 발생하고
+                                            // 콜백함수 로직 안에서 유효성 검사를 한다.
+                                            // id, password가 값이 있는지 없는지 검사 하기 위해
+                                            // id, password의 값을 들고 온다.
+
+        // console.log(id, password);        // 콘솔에서 확인을 위해 값을 입력한 후
+                                            // dom을 이용해 properties를 확인한다.     
+                                            // value에 값이 들어가는 것을 확인할 수 있다.                             
+        
+        // id의 value값이 빈문자열이니?
+        // if(id.value === "")
+        // 값이 없으면 어차피 false이므로 비교할필요 없다.
+        if(!id.value){  
+            // 값이 없다면 텍스트를 넣을거야
+        idresult.innerText = "아이디를 입력해주세요" 
+        idresult.style.color = "red";
+        return;
+        }
+        idresult.innerText = "아이디 입력 완료"
+        idresult.style.color = "blue";
+
+        if(password.value===""){
+        pwresult.innerText = "비밀번호를 입력해주세요"
+        pwresult.style.color = "red";
+        return;
+        }
+        pwresult.innerText = "비밀번호 입력 완료"
+        pwresult.style.color = "blue";
+
+    });
+
+</script>
+</html> 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 전체동의</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery 전체동의</title>
+</head>
+<body>
+  <form action="" name="myForm">
+    <div>
+        <label>
+            전체 동의
+            <input type="checkbox" name="term1" class="all">
+        </label>
+    </div>
+    <div>
+        <label>
+            서비스 이용약관 동의
+            <input type="checkbox" name="term1" class="term">
+        </label>
+    </div>
+    <div>
+        <label>
+            광고 수신 동의
+            <input type="checkbox" name="term2" class="term">
+        </label>
+    </div>
+    <div>
+        <label>
+            개인 정보 이용약관 동의
+            <input type="checkbox" name="term3" class="term">
+        </label>
+    </div>
+  </form>   
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    // on() == addEventListener()
+    $(".all").on("click", (e) => { // class가 all인 체크박스를 선택해서 클릭 이벤트가 발생했을 때 함수를 실행한다.
+        $(".term").prop("checked", e.target.checked); // 전체 동의 체크박스를 체크하면 
+                                                    // class가 term인 모든 개별 동의 체크박스의 체크 상태가 checked로 바뀐다.
+                                                    // 반대로 해제하면, 모두 해제된다.
+    });
+
+    $(".term").on("click", (e) => { // class가 term인 체크박스들을 선택해서 클릭 이벤트가 발생했을 때 함수를 실행한다.
+        $(".all").prop("checked", $(".term").filter(":checked").length === 3); // prop으로 선택한 체크박스의 checked 속성을 설정한다.                                                              
+                                                                    // .filter(":checked")로
+                                                                    // 선택된 체크박스 중에서 현재 체크된 상태인 체크박스만 
+                                                                    // 걸러낸 후 length로 체크박스의 개수가 3인지 확인한다. 
+                                                                    // 만약 체크된 체크박수 수가 3이라면, 
+                                                                    // 전체 동의 체크박스의 checked 속성이 true가 되어
+                                                                    // 전체 동의 체크박스가 체크되고,
+                                                                    // 3이 아니라면 false가 되어 
+                                                                    // 전체 동의 체크박스가 해제된다.
+
+    });
+
+</script>
+</html>

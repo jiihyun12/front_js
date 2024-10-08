@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체크박스 동의</title>
+</head>
+<body>
+    <form action="" name="myForm">
+        <div>
+            <label>전체 동의
+                <input type="checkbox" name="all">
+            </label>
+        </div>
+        <div>
+            <label>서비스 이용약관 동의
+                <input type="checkbox" name="term">
+            </label>
+        </div>
+        <div>
+            <label>광고 수신 동의
+                <input type="checkbox" name="term">
+            </label>
+        </div>
+        <div>
+            <label>개인 정보 이용약관 동의
+                <input type="checkbox" name="term">
+            </label>
+        </div>
+    </form>
+</body>
+<script>
+    // 전체 동의를 완성하라!
+
+    // 알고리즘
+    // 다 가져와서
+    // all을 체크하면 terms도 다같이 체크되게 하기
+    // all에 클릭이벤트가 발생하면, 반복문을 돌며 terms들에게도 checked가 true가 되게 적용시키기
+
+    NodeList.prototype.forEach = Array.prototype.forEach;
+    NodeList.prototype.map = Array.prototype.map;
+
+    const all = document.querySelector("input[name='all']"); 
+    const terms = document.querySelectorAll("input[name='term']");
+    // console.log(all, terms);
+
+    all.addEventListener("click", (e)=>{ // all을 클릭했을 때 terms에 있는 상태를 바꾼다.
+        terms.forEach((check)=>{ // 유사배열의 형태이므로 반복문을 돌린다.
+                                // check에 있는 checked의 상태를 모두 true로 바꾸면 된다.
+            // check.checked = true; // 하나만 해제가 된다.
+            
+            check.checked = e.target.checked; // 또는
+            // check.checked = all.checked;
+            // 모두 적용된다.
+
+        });
+    });
+
+    // 하나라도 check가 해제되면 전체 동의가 해제되게 하기
+    terms.forEach((check)=>{
+        check.addEventListener("click",(e)=>{ 
+            // console.log(terms.map((check)=>check.checked));// 상태가 바뀔때마다 terms들의 체크 상태를 가져온다.
+                                                              // 클릭을 할 때마다 기존에 있는 상태들이 모두 true가 됐는지, 
+                                                             // 하나라도 false가 됐는지 
+                                                            // 기존 값을 변경하여 새로운 값으로 리턴하는 map함수를 활용하여
+                                                            // checked상태만 모아서 새롭게 배열로 만든다.
+                                                            // 콘솔에서 check가 눌려질때마다 상태를 가져오는것을 확인할 수 있다.
+           all.checked = terms.map((check)=>check.checked).filter((checked)=>checked).length === 3;
+                                                          // filter를 사용하여 true값을 걸러낸다.
+                                                          // return타입이 배열이므로 길이를 비교한다.
+        })
+    })
+    
+</script>
+</html>

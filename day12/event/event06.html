@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트06 체크박스</title>
+</head>
+<body>
+    <div>
+        <label><input type="checkbox" name="choice" value="선택1">선택1</label>
+        <label><input type="checkbox" name="choice" value="선택2">선택2</label>
+        <label><input type="checkbox" name="choice" value="선택3">선택3</label>
+        <p id="result"></p>
+    </div>
+</body>
+<script>
+    // createElement("태그명") // 요소를 만드는 메서드
+    // appendchild(), removechild() // 추가, 삭제
+
+    NodeList.prototype.filter = Array.prototype.filter;
+
+    const checkboxes = document.querySelectorAll("input[type='checkbox']");
+    const result = document.querySelector("#result"); // result라는 결과물에 value값을 넣어줄것이므로 result도 가져온다.
+    // console.log(checkboxes, result);     // 유사배열의 형태로 가지고왔다.
+
+    checkboxes.forEach((checkbox)=>{ // checkboxes에서 checkbox들이 들어왔을 때
+        checkbox.addEventListener("click", (e)=>{ // 클릭이 되었을 때 
+            if(e.target.checked){ // 체크 상태가 true일 때 즉, 체크가 되어있을때만 가져올 것이다.
+            const strong = document.createElement("strong"); // 굵게 만들기 위해 strong태그로만들고,
+                                                            // 한 번만 쓸 것이 아니기때문에 변수 안에 담아둔다.
+            strong.innerText = e.target.value; 
+            strong.style.marginRight = "8px";
+            // 추가 및 삭제 시 부모 요소부터 접근
+            result.appendChild(strong);    // 부모에게 접근해서 자식으로 strong태그를 추가한다.
+                                           // strong태그가 만들어지면서 rarget에 value도 넣고,
+                                          // marginRight도 들어간 상태로 추가가 된다.
+                                          // 콘솔로 확인해보니 태그가 생기면서 스타일도 들어가있다.(태그로)
+        }else{
+            // 삭제하는 로직
+            // result.removeChild()
+
+            // 태그들을 배열에 다시 담아서 
+            // 내가 check 해제한 벨류값이랑 너가 가지고 있는 값이랑 같으면 없애버려라 라고 하면 된다.
+            // 배열에서 걸러서 없앨 수 있는 filter를 사용한다.
+            const strongs = document.querySelectorAll("strong"); // 기존의 strong태그들을 가져온다.
+            // const target = strongs.filter((strong)=>strog.innerText == e.target.value)[0]; // strong태그에서 innerText랑 
+                                                                                        // 이벤트를 발생시킨 e.target.value값이랑
+                                                                                        // 같은 친구가 있는지 확인
+            // console.log(target);                                            // 체크를 해제했을 때 배열로 들고있는것이 확인된다. 
+            const target = strongs.filter((strong)=>strog.innerText == e.target.value)[0]; // 배열을 전달하면 해당 객체중
+                                                                                          // 자식요소에 배열이 없기 때문에 못 찾아서
+                                                                                          // 지울 수 없다.
+                                                                                          // 따라서 돔을 넘겨줘야한다.
+                                                                                          // 해당 돔을 그대로 들고올 수 있게
+                                                                                          // 대괄호 접근법으로 0번째 방을 들고온다.
+                                                                                          
+            result.removeChild(target);                                                   // 자식요소중에서 해당태그를 지우라고 넘겨줘서
+                                                                                          // 지워진것을 확인할 수 있다.
+        }
+            
+    })
+   })
+</script>
+</html>

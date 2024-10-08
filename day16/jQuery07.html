@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 이벤트</title>
+</head>
+<body>
+    <ul>
+        <li>리액트</li>
+        <li>타입스크립트</li>
+        <li>노드</li>
+    </ul>
+    <button>버튼</button>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    const $button = $("button");
+    $button.on("click", ()=>{
+        // $("ul").hide(); // 숨기기
+        // $("ul").show(); // 나타내기
+        // $("ul").toggle(); // 두 동작 반복
+
+        // $("ul").fadeOut();
+        // $("ul").fadeIn();
+        // $("ul").fadeToggle();
+
+        // $("ul").slideUp();
+        // $("ul").slideDown();
+        // $("ul").slideToggle();
+
+    })
+</script>
+</html>

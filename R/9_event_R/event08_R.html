@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>첨부파일 썸네일</title>
+    <style>
+        div.wrap{ 
+            width: 90px;
+            height: 90px;
+            margin: 0 auto;
+        }
+
+        div.image{
+            cursor: pointer; /* 마우스 모양 바꾸기 */
+            background-image: url('../images/add.png');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 70px;
+            height: 70px;
+        }
+
+        input[type='file']{ 
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div class="wrap">
+            <label for="attach"> <!-- lable태그는 대신 id에있는 요소를 눌러줄 수 있다.-->
+                <div class="image"></div>
+            </label>
+        </div>
+        <input type="file" id="attach"> <!--파일을 첨부할 수 있게 input type을 file로 한다.-->
+    </form>
+</body>
+<script>
+    const input = document.getElementById("attach");
+    const thumbnail = document.querySelector("div.image");
+    // console.log(input, thumbnail); // input태그와 img요소를 넣기 위한  돔 두 개를 들고온다.
+
+    input.addEventListener("change", (e)=>{ // 숨겨져있는 input태그가 이벤트리스너를 듣고있어야한다.
+                                            // "change" : 상태에 변화가 생겼을 때
+        // console.log(e);                  // 출력 후 이벤트를 발생시킨 input이 있는 target으로 들어가서
+                                            // files: FileList 프로퍼티가 있다.
+                                            // 안으로 들어가보면 0번째방에 이미지의 경로가 표시된다.
+
+        const reader = new FileReader();   // 파일을 읽기 위해 FileReader가 필요하다.
+        reader.readAsDataURL(e.target.files[0]); // reader에게 data의 url을 읽어오게 한다.
+        reader.onload = (e) => { // FileReader가 파일을 읽으면 
+            console.log(e); 
+            thumbnail.style.backgroundImage = `url(${e.target.result})` // 읽어온 파일의 데이터 URL을 배경 이미지로 설정한다.
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+table {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+thead {
+    background-color: #fff9c4;
+}
+
+fieldset {
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+}

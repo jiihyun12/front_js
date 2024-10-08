@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체를 동적으로 생성, 삽입, 삭제</title>
+</head>
+<body>
+    <div id="wrap">
+        <p>DOM 트리에 동적으로 객체를 삽입할 수 있다.</p>
+        <p>createElement("태그명"), appendChiled("태그객체"), 
+            removeChild("태그객체")
+        </p> 
+        <p>위 3개의 메소드를 이용해서 새로운 객체를 생성, 삽입, 삭제할 수 있다.</p>
+        <a href="javascript:createDIV()">DIV 생성</a> 
+       <!-- createDIV 함수를 사용할것이다.
+            경로가 아닌 자바스트립트라고 알려주는것이다.
+    -->
+    </div>
+</body>
+<script>
+
+    globalThis.number = 0;
+    
+    function createDIV(){ // a 태그에서 사용할것이다.
+
+        const colors = new Array( // 배열로 color를 생성
+            "yellow",
+            "orange",
+            "pink",
+            "skyblue",
+            "red",
+            "blue",
+            "green"
+        )
+
+       const div = document.createElement("div"); // 문서에서 creativeElement요소 만들어줘. div태그를.
+       div.innerText = `새로 생성된 div${++globalThis.number}` ; // 몇 번째 number인지 확인하기 위해 상단에 전역변수 하나 생성.
+                                                                // 0값을 증가시킨다.
+       document.getElementById("wrap").appendChild(div); // 만들었으니 어디에다가 넣어줄지 말해준다.
+                                                        // 만들었다고 무조건 도큐먼트에 들어가는 것이 아니고, 
+                                                        // 만들었으면 도큐먼트의 어디에 들어가라라고 말을 해 줘야 들어간다.
+                                                        // 도큐먼트에 아이디가 wrap인 곳에 자식으로 추가시켜줘. 위에서 만든 div를.
+                                                        // 이렇게 wrap의 자식요소에 추가를 한다.
+                                                         // 라이브서버로 확인해보면 div가 생성되고있는것을 확인할 수 있다.
+
+       const i = Math.floor(Math.random() * colors.length); // background color를 그냥 넣으면 모두가 동일한 색으로 들어가기때문에
+                                                            // Math의 random을 사용하여 random한 color로 생성되게 해준다.
+                // Math.random() * colors.length // 인덱스마크의 숫자를 뽑고 싶으므로 random에 인덱스의 길이만큼을 곱해준다.
+                // Math.floor       // random의 소수점자리를 버리기 위해 내림 메서드인 floor를 사용한다.
+       div.style.backgroundColor = colors[i]; // i값은 0~7까지 랜덤한 숫자를 나오게 한다.
+                                             // 이 i값을 만들어지는 background에 넣기 위해
+                                             // div의 style의 backgroundcolor에다가 colors에 i값으로 background를 넣는다.
+
+
+    // 자바스크립트 코드는 본인이 본인을 삭제할 수 없다.
+    // dom을 삭제하려면 부모에게 접근해서 자식을 삭제해야한다.
+    // 개발자모드에서 확인해보니 parentElement: div#wrap , parentNode: div#wrap 
+    // 이 두 개가 부모의 요소 wrapper를 가지고 있는 것이 확인된다.
+
+    // div를 클릭했을 때 클릭된 요소가 삭제되게 만들기.
+       div.onclick = function () { // div를 클릭했을 때 onclick함수로 위에 있는 걸 실행시켜줘.
+        this.parentElement.removeChild(this) // 객체가 호출될 때 접근한 자기 자신의 주소를 가지고 있는 변수인 this를 사용한다.
+                                             // 부모에게 접근해서 removeChild로 자기 자신을 지운다.
+
+                                            // div를 클릭하면 클릭한 자신이 this에 담긴다.
+                                            // 그것의 부모인 wrap에 접근해서 자기 자신인 this를 지우게 된다.
+                                            // 라이브 서버로 확인을 해 봤을 때 클릭을 하면 클릭을 한 요소가 지워지는 것을 확인할 수 있다.
+                                            // 해당 클릭한 this 자기 자신이 가지고있는 엄마의 element wrap에 div가 들어가있는 형태인데, 
+                                            // 부모인 wrap에게 다시 자기 자신을 지워라 라고 명령한 것이다.
+       };
+    };
+
+</script>
+</html>

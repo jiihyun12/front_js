@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 속성변경(attr)</title>
+    <style>
+        .password-wrap{
+            width: 200px;
+            border: solid 1px black;
+            display: flex;
+        }
+
+        input {
+            outline: none;
+            border: none;
+        }
+
+        div.mark{
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background-image: url("images/close.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div class="password-wrap">
+            <label>
+                <input type="password" placeholder="패스워드를 입력해주세요">
+            </label>
+            <div class="mark"></div>
+        </div>
+    </form>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $input = $("input[type='password']");
+    $mark = $(".mark")
+
+    $mark.on("click", (e)=>{
+        const check = $input.attr("type") === "password";
+        $input.attr("type", check ? "text" : "password");
+        $(e.target).css("background-image", `url(${check ? "images/open.svg" : "images/close.svg"})`);
+    });
+</script>
+</html>

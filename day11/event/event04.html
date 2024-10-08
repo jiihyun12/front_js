@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>키 이벤트</title>
+</head>
+<body>
+    <div>
+        <input type="text" name="name" placeholder="이름을 입력하세요">
+        <p id="result"></p>
+    </div>
+</body>
+<script>
+    const input = document.querySelector("input[name='name']")
+    const p = document.querySelector("#result")
+
+    // 사용자가 입력한 키보드 값을 console에 출력하기
+    // input.addEventLister("keyPress", (e)=>{
+        // console.log(e)              //  키보드를 눌렀을 떄 event 객체에서 code와 key에 찍히는것을 확인할 수 있다.
+                                       // target으로 이벤트가 어디서 발생했는지도 볼 수 있다.
+        // console.log(e.key);         // enter를 누르면 enter가 console에 찍히게된다.                                                         
+    // })
+
+        
+    
+    // 사용자가 입력한 이름을 
+    // p태그에 실시간으로 보여주기
+   input.addEventListener("keyup",(e)=>{
+    if(e.key==='Enter'){ // e.key가 Enter와 같다면
+    p.innerText = e.target.value; // p태그의 innerText에 e.target.value를 넣는다.
+    }
+   });
+
+
+</script>
+</html>
