@@ -4,7 +4,6 @@
 // ex) ["Eliseo@gardner.biz"] => ["Eliseo"]
 // 아이디만 출력
 
-                           
 
 // 2번 문제
 // https://jsonplaceholder.typicode.com/users

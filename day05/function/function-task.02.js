@@ -72,3 +72,19 @@ console.log(getCount(0,0,1,1,0));
 
 // console.log(getCount(0,0,1,1,0));
 
+//-------------------
+// function countZeroOrOne(...args){
+//     let countZero = 0;
+//     let countOne = 0;
+
+//     for (const num of args){
+//         if(num === 0) {
+//             countZero++;
+//         } else if(num === 1){
+//             countOne++;
+//         }
+//     }
+//     return console.log(`0의 개수는 ${countZero}개,\n1의 개수는 ${countOne}개입니다.`);
+// }
+// countZeroOrOne(0,0,0,1,1);
+

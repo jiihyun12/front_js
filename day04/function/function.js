@@ -87,6 +87,8 @@ function add(num1, num2, num3, num4, num5){
     }
     let result2 = multi(10,10,10);
 
+    
+
 
 
 // 6. 숫자 2개를 받아서 더하고 출력해주는 함수
